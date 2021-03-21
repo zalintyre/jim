@@ -35,13 +35,13 @@ clean:
 
 .PHONY: install
 install: build
-	install -d $(DESTDIR)/bin
-	install -m 0755 build/local/jim $(DESTDIR)/bin/jim
-	install -m 0755 build/local/jimClient $(DESTDIR)/bin/jimClient
-	install -m 0755 build/local/jimServer $(DESTDIR)/bin/jimServer
+	install -d $(DESTDIR)/usr/bin
+	install -m 0755 build/local/jim $(DESTDIR)/usr/bin/jim
+	install -m 0755 build/local/jimClient $(DESTDIR)/usr/bin/jimClient
+	install -m 0755 build/local/jimServer $(DESTDIR)/usr/bin/jimServer
 
 .PHONY: uninstall
 uninstall:
-	rm -f $(DESTDIR)/bin/jim
-	rm -f $(DESTDIR)/bin/jimClient
-	rm -f $(DESTDIR)/bin/jimServer
+	rm -f $(DESTDIR)/usr/bin/jim
+	rm -f $(DESTDIR)/usr/bin/jimClient
+	rm -f $(DESTDIR)/usr/bin/jimServer
