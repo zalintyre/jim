@@ -1,4 +1,7 @@
+.DEFAULT_GOAL := build
+
 PLATFORMS := linux/amd64 darwin/amd64
+PREFIX := /usr
 
 temp = $(subst /, ,$@)
 os = $(word 1, $(temp))
@@ -30,3 +33,15 @@ build-server:
 clean:
 	rm -rf build/
 	rm -rf dist/
+
+.PHONY: install
+install: build
+	install -m 0755 build/local/jim $(PREFIX)/bin
+	install -m 0755 build/local/jimClient $(PREFIX)/bin
+	install -m 0755 build/local/jimServer $(PREFIX)/bin
+
+.PHONY: uninstall
+uninstall:
+	rm -f $(PREFIX)/bin/jim
+	rm -f $(PREFIX)/bin/jimClient
+	rm -f $(PREFIX)/bin/jimServer
