@@ -1,7 +1,6 @@
 .DEFAULT_GOAL := build
 
 PLATFORMS := linux/amd64 darwin/amd64
-PREFIX := /usr
 
 temp = $(subst /, ,$@)
 os = $(word 1, $(temp))
@@ -36,12 +35,13 @@ clean:
 
 .PHONY: install
 install: build
-	install -m 0755 build/local/jim $(PREFIX)/bin
-	install -m 0755 build/local/jimClient $(PREFIX)/bin
-	install -m 0755 build/local/jimServer $(PREFIX)/bin
+	install -d $(DESTDIR)/bin
+	install -m 0755 build/local/jim $(DESTDIR)/bin/jim
+	install -m 0755 build/local/jimClient $(DESTDIR)/bin/jimClient
+	install -m 0755 build/local/jimServer $(DESTDIR)/bin/jimServer
 
 .PHONY: uninstall
 uninstall:
-	rm -f $(PREFIX)/bin/jim
-	rm -f $(PREFIX)/bin/jimClient
-	rm -f $(PREFIX)/bin/jimServer
+	rm -f $(DESTDIR)/bin/jim
+	rm -f $(DESTDIR)/bin/jimClient
+	rm -f $(DESTDIR)/bin/jimServer
